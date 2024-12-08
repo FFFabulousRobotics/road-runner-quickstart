@@ -9,4 +9,22 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Autonomous(group = "Test")
-public class MyRRTest extends LinearOpMode
+public class MyRRTest extends LinearOpMode{
+
+    private MecanumDrive drive;
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+        Pose2d beginPose = new Pose2d(0, 0, 0);
+
+        MecanumDrive drive = new MecanumDrive(hardwareMap, beginPose);
+
+        waitForStart();
+
+        Actions.runBlocking(
+                drive.actionBuilder(beginPose)
+                        .splineTo(new Vector2d(30, 30), Math.PI / 2)
+                        .splineTo(new Vector2d(0, 60), Math.PI)
+                        .build());
+    }
+}
