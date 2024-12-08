@@ -21,3 +21,10 @@ public class MyRRTest extends LinearOpMode{
 
         waitForStart();
 
+        Actions.runBlocking(
+                drive.actionBuilder(beginPose)
+                        .splineTo(new Vector2d(30, 30), Math.PI / 2)
+                        .splineTo(new Vector2d(0, 60), Math.PI)
+                        .build());
+    }
+}
